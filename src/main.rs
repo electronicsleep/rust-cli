@@ -16,6 +16,12 @@ fn cli() -> Command<'static> {
                 .arg_required_else_help(false),
         )
         .subcommand(
+            Command::new("clone")
+                .about("this is clone")
+                .arg(arg!(<REMOTE> "The remote to clone"))
+                .arg_required_else_help(true),
+        )
+        .subcommand(
             Command::new("test")
                 .about("this is a test")
                 .arg(arg!(<REMOTE> "The remote to clone"))
@@ -35,6 +41,7 @@ fn cli() -> Command<'static> {
         )
         .subcommand(
             Command::new("stash")
+                .about("stash things")
                 .args_conflicts_with_subcommands(true)
                 .args(push_args())
                 .subcommand(Command::new("push").args(push_args()))
@@ -65,6 +72,7 @@ fn main() {
                 "Cloning {}",
                 sub_matches.value_of("REMOTE").expect("required")
             );
+            run_clone();
         }
         Some(("push", sub_matches)) => {
             println!(
@@ -116,4 +124,8 @@ fn main() {
 
 fn say_name(name: &Vec<PathBuf>) {
     println!("running say_name {:?}", name)
+}
+
+fn run_clone() {
+    println!("running run_clone")
 }
