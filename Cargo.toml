@@ -1,0 +1,9 @@
+[package]
+name = "rust-cli"
+description = "Rust CLI"
+version = "0.1.0"
+authors = ["Chris <electronicsleep@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+clap = { version = "3.1.8", features = ["derive"] }
