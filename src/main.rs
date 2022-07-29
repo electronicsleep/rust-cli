@@ -1,5 +1,3 @@
-// Note: this requires the `cargo` feature
-
 use std::path::PathBuf;
 
 use clap::{arg, Command};
@@ -11,6 +9,12 @@ fn cli() -> Command<'static> {
         .arg_required_else_help(true)
         .allow_external_subcommands(true)
         .allow_invalid_utf8_for_external_subcommands(true)
+        .subcommand(
+            Command::new("hello")
+                .about("this is a hello")
+                .arg(arg!(<NAME> "Hello").allow_invalid_utf8(true))
+                .arg_required_else_help(false),
+        )
         .subcommand(
             Command::new("test")
                 .about("this is a test")
@@ -47,6 +51,14 @@ fn main() {
     let matches = cli().get_matches();
 
     match matches.subcommand() {
+        Some(("hello", sub_matches)) => {
+            let name = sub_matches
+                .values_of_os("NAME")
+                .unwrap_or_default()
+                .map(PathBuf::from)
+                .collect::<Vec<_>>();
+            println!("Hello {:?}", name);
+        }
         Some(("clone", sub_matches)) => {
             println!(
                 "Cloning {}",
@@ -94,7 +106,8 @@ fn main() {
                 .collect::<Vec<_>>();
             println!("Calling out to {:?} with {:?}", ext, args);
         }
-        _ => unreachable!(), // If all subcommands are defined above, anything else is unreachabe!()
+        _ => unreachable!(),
+        //NOTE: If all subcommands are defined above, anything else is unreachabe!()
     }
 
     // Continued program logic goes here...
