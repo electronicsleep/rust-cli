@@ -58,6 +58,7 @@ fn main() {
                 .map(PathBuf::from)
                 .collect::<Vec<_>>();
             println!("Hello {:?}", name);
+            say_name(&name);
         }
         Some(("clone", sub_matches)) => {
             println!(
@@ -111,4 +112,8 @@ fn main() {
     }
 
     // Continued program logic goes here...
+}
+
+fn say_name(name: &Vec<PathBuf>) {
+    println!("running say_name {:?}", name)
 }
