@@ -1,9 +1,9 @@
 [package]
 name = "rust-cli"
 description = "Rust cli"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Chris <electronicsleep@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 clap = { version = "3.1.8", features = ["derive"] }

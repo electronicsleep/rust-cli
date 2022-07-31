@@ -17,37 +17,38 @@ fn cli() -> Command<'static> {
         )
         .subcommand(
             Command::new("clone")
-                .about("this is clone")
-                .arg(arg!(<REMOTE> "The remote to clone"))
-                .arg_required_else_help(true),
-        )
-        .subcommand(
-            Command::new("test")
-                .about("this is a test")
+                .about("clone remote")
                 .arg(arg!(<REMOTE> "The remote to clone"))
                 .arg_required_else_help(true),
         )
         .subcommand(
             Command::new("push")
-                .about("pushes things")
+                .about("pushes remote")
                 .arg(arg!(<REMOTE> "The remote to target"))
                 .arg_required_else_help(true),
         )
         .subcommand(
             Command::new("add")
-                .about("adds things")
+                .about("adds files")
                 .arg_required_else_help(true)
-                .arg(arg!(<PATH> ... "Stuff to add").allow_invalid_utf8(true)),
+                .arg(arg!(<PATH> ... "Files to add").allow_invalid_utf8(true)),
         )
         .subcommand(
             Command::new("stash")
-                .about("stash things")
+                .about("stash files")
                 .args_conflicts_with_subcommands(true)
                 .args(push_args())
                 .subcommand(Command::new("push").args(push_args()))
                 .subcommand(Command::new("pop").arg(arg!([STASH])))
                 .subcommand(Command::new("apply").arg(arg!([STASH]))),
         )
+        .subcommand(
+            Command::new("test")
+                .about("test case")
+                .arg(arg!(<TEST> "The test to run"))
+                .arg_required_else_help(true),
+        )
+        .subcommand(Command::new("upload").about("upload file"))
 }
 
 fn push_args() -> Vec<clap::Arg<'static>> {
@@ -90,6 +91,7 @@ fn main() {
         }
         Some(("stash", sub_matches)) => {
             let stash_command = sub_matches.subcommand().unwrap_or(("push", sub_matches));
+            println!("Stash");
             match stash_command {
                 ("apply", sub_matches) => {
                     let stash = sub_matches.value_of("STASH");
@@ -107,6 +109,16 @@ fn main() {
                     unreachable!("Unsupported subcommand `{}`", name)
                 }
             }
+        }
+        Some(("upload", _sub_matches)) => {
+            println!("upload");
+            run_upload();
+        }
+        Some(("test", sub_matches)) => {
+            println!(
+                "test case {}",
+                sub_matches.value_of("TEST").expect("required")
+            );
         }
         Some((ext, sub_matches)) => {
             let args = sub_matches
@@ -128,4 +140,8 @@ fn say_name(name: &Vec<PathBuf>) {
 
 fn run_clone() {
     println!("running run_clone")
+}
+
+fn run_upload() {
+    println!("upload file!")
 }
