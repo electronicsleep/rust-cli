@@ -2,7 +2,7 @@ use clap::{Parser, Subcommand};
 
 #[derive(Debug, Parser)]
 #[clap(name = "rust-cli")]
-#[clap(about = "rust-cli", long_about = None)]
+#[clap(about = "Super simple Rust Clap example", long_about = None)]
 struct Cli {
     #[clap(subcommand)]
     command: Commands,
@@ -35,7 +35,10 @@ fn main() {
 
     match args.command {
         Commands::CheckEcho { service } => {
-            println!("check-echo env: {} region: {} verbose: {} service: {}", args.env, args.region, args.verbose, service);
+            println!(
+                "check-echo env: {} region: {} verbose: {} service: {}",
+                args.env, args.region, args.verbose, service
+            );
             check_echo()
         }
     }
