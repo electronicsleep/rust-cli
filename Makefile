@@ -1,2 +1,2 @@
 build:
-	cargo build; ./target/debug/rust-cli -h
+	cargo fmt; cargo build; ./target/debug/rust-cli -h

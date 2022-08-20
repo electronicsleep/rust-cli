@@ -2,6 +2,8 @@
 
 Super simple Rust Clap example
 
+https://docs.rs/clap/latest/clap/
+
 https://github.com/clap-rs/clap/blob/master/examples/git-derive.rs
 
-https://docs.rs/clap/latest/clap/
+https://www.rust-lang.org/
