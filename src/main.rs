@@ -22,9 +22,9 @@ struct Cli {
 
 #[derive(Debug, Subcommand)]
 enum Commands {
-    /// Check Echo
+    /// Echo
     #[clap(arg_required_else_help = true)]
-    CheckEcho {
+    Echo {
         /// Service
         service: String,
     },
@@ -34,16 +34,16 @@ fn main() {
     let args = Cli::parse();
 
     match args.command {
-        Commands::CheckEcho { service } => {
+        Commands::Echo { service } => {
             println!(
-                "check-echo env: {} region: {} verbose: {} service: {}",
+                "echo: env: {} region: {} verbose: {} service: {}",
                 args.env, args.region, args.verbose, service
             );
-            check_echo()
+            echo(service);
         }
     }
 }
 
-fn check_echo() {
-    println!("check_echo")
+fn echo(service: String) {
+    println!("echo {}", service)
 }
