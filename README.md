@@ -3,9 +3,8 @@
 Super simple Rust Clap example
 
 ```
-make
+cargo run
 
-./target/debug/rust-cli
 ./target/debug/rust-cli -v echo test
 ./target/debug/rust-cli -e dev echo test
 ./target/debug/rust-cli tui test
