@@ -1,16 +1,14 @@
 use crossterm::{
-    event::{self, DisableMouseCapture, EnableMouseCapture, Event, KeyCode},
+    event::{DisableMouseCapture, EnableMouseCapture},
     execute,
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
 use std::{io, thread, time::Duration};
 use tui::{
     backend::CrosstermBackend,
-    layout::{Constraint, Direction, Layout},
-    widgets::{Block, Borders, Widget},
+    widgets::{Block, Borders},
     Terminal,
 };
-
 
 pub fn tui() -> Result<(), io::Error> {
     println!("tui");

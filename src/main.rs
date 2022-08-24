@@ -50,9 +50,7 @@ fn main() {
             echo(service);
         }
         Commands::Tui { mode } => {
-            println!(
-                "tui: mode: {} verbose: {}", mode, args.verbose
-            );
+            println!("tui: mode: {} verbose: {}", mode, args.verbose);
             let result = tui::tui();
             println!("result {:?}", result)
         }
