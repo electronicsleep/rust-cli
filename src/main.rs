@@ -1,3 +1,5 @@
+mod tui;
+
 use clap::{Parser, Subcommand};
 
 #[derive(Debug, Parser)]
@@ -28,6 +30,12 @@ enum Commands {
         /// Service
         service: String,
     },
+    /// Tui
+    #[clap(arg_required_else_help = true)]
+    Tui {
+        /// Mode
+        mode: String,
+    },
 }
 
 fn main() {
@@ -41,9 +49,16 @@ fn main() {
             );
             echo(service);
         }
+        Commands::Tui { mode } => {
+            println!(
+                "tui: mode: {} verbose: {}", mode, args.verbose
+            );
+            let result = tui::tui();
+            println!("result {:?}", result)
+        }
     }
 }
 
 fn echo(service: String) {
-    println!("echo {}", service)
+    println!("echo {}", service);
 }
