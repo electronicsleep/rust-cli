@@ -21,7 +21,7 @@ pub fn tui() -> Result<(), io::Error> {
 
     terminal.draw(|f| {
         let size = f.size();
-        let block = Block::default().title("Block").borders(Borders::ALL);
+        let block = Block::default().title("[rust-cli] Super simple Rust Clap example").borders(Borders::ALL);
         f.render_widget(block, size);
     })?;
 
