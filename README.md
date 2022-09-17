@@ -1,6 +1,6 @@
 # rust-cli
 
-Super simple Rust Clap example
+Super simple Rust Clap/Tui example
 
 ```
 cargo run
