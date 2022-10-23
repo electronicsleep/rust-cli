@@ -4,7 +4,7 @@ use clap::{Parser, Subcommand};
 
 #[derive(Debug, Parser)]
 #[clap(name = "rust-cli")]
-#[clap(about = "Super simple Rust Clap example", long_about = None)]
+#[clap(author, version, about, long_about = None)]
 struct Cli {
     #[clap(subcommand)]
     command: Commands,

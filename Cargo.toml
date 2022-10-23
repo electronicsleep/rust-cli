@@ -1,8 +1,8 @@
 [package]
 name = "rust-cli"
 description = "Super simple Rust Clap example"
-version = "0.1.4"
-authors = ["Chris <electronicsleep@gmail.com>"]
+version = "0.1.6"
+authors = ["github.com/electronicsleep"]
 edition = "2021"
 
 [dependencies]
