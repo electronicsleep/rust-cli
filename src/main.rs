@@ -1,4 +1,3 @@
-mod lib;
 mod tui;
 
 use clap::{Parser, Subcommand};
@@ -61,7 +60,7 @@ fn main() {
     match args.command {
         Commands::CheckUrl { url } => {
             println!("check-url group: {}", url);
-            let result = lib::check_url(url);
+            let result = rust_cli::check_url(url);
             println!("result {:?}", result)
         }
 
@@ -70,7 +69,7 @@ fn main() {
                 "echo: env: {} region: {} verbose: {} service: {}",
                 args.env, args.region, args.verbose, service
             );
-            lib::echo(service);
+            rust_cli::echo(service);
         }
 
         Commands::Test { service } => {
@@ -78,7 +77,7 @@ fn main() {
                 "test: env: {} region: {} verbose: {} service: {}",
                 args.env, args.region, args.verbose, service
             );
-            lib::test(service);
+            rust_cli::test(service);
         }
 
         Commands::Tui { mode } => {
